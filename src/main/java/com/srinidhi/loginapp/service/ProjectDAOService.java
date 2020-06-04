@@ -35,4 +35,12 @@ public class ProjectDAOService {
 		projRepo.deleteById(id);
 	}
 	
+	public boolean findProjectById(String projectId) {
+		Project project = projRepo.findById(projectId).get();
+		if(project!=null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
