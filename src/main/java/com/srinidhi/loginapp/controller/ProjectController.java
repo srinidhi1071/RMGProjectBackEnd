@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.srinidhi.loginapp.exceptions.ResourceNotFoundException;
 import com.srinidhi.loginapp.model.Project;
+import com.srinidhi.loginapp.repo.ProjectRepo;
 import com.srinidhi.loginapp.service.ProjectDAOService;
 
 @RestController
@@ -25,6 +29,9 @@ public class ProjectController {
 	
 	@Autowired
 	public ProjectDAOService projDAOService;
+	
+	@Autowired
+	public ProjectRepo projRepo;
 	
 	@PostMapping("/addProject")
 	public ResponseEntity addProject(@RequestBody Project project) {
@@ -41,6 +48,17 @@ public class ProjectController {
 	@GetMapping("/projects")
 	public List<Project> getAllProjects(){
 		return projDAOService.findAllProjects();
+	}
+	
+	@PutMapping("/projects/{projectId}")
+	public ResponseEntity<Project> updateProject(@PathVariable String projectId,@RequestBody Project project) {
+		Project proj = projRepo.findById(projectId).orElseThrow(()->new ResourceNotFoundException("Project Not Found For the Id::"+projectId));
+		proj.setProjectId(projectId);
+		proj.setCreatedBy(project.getCreatedBy());
+		proj.setProjectName(project.getProjectName());
+		proj.setTeamSize(project.getTeamSize());
+		Project updatedProject = projRepo.save(proj);
+		return ResponseEntity.ok(updatedProject);
 	}
 	
 	@DeleteMapping("/projects/{projectId}")
