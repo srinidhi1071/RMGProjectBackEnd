@@ -31,4 +31,8 @@ public class ProjectDAOService {
 		return projRepo.findAll();
 	}
 	
+	public void deleteProject(String id) {
+		projRepo.deleteById(id);
+	}
+	
 }
