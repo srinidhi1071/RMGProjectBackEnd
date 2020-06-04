@@ -1,21 +1,22 @@
 package com.srinidhi.loginapp.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.srinidhi.loginapp.model.Project;
 import com.srinidhi.loginapp.service.ProjectDAOService;
 
 @RestController
-@CrossOrigin(origins ="*")
+@CrossOrigin(origins ="http://localhost:4200/")
 public class ProjectController {
 	
 	@Autowired
@@ -31,7 +32,10 @@ public class ProjectController {
 		hm.put("msg", "Successfully Added");
 		ResponseEntity re = new ResponseEntity(hm, HttpStatus.CREATED);
 		return re;
-		
 	}
-
+	
+	@GetMapping("/projects")
+	public List<Project> getAllProjects(){
+		return projDAOService.findAllProjects();
+	}
 }

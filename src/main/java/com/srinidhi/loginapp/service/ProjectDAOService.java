@@ -1,14 +1,17 @@
 package com.srinidhi.loginapp.service;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.srinidhi.loginapp.model.Project;
 import com.srinidhi.loginapp.repo.ProjectRepo;
-@Component
+
+@Service
 public class ProjectDAOService {
 	
 	@Autowired
@@ -23,5 +26,9 @@ public class ProjectDAOService {
 		projRepo.save(proj);
 		return  proj;
 	}
-
+	
+	public List<Project> findAllProjects() {
+		return projRepo.findAll();
+	}
+	
 }

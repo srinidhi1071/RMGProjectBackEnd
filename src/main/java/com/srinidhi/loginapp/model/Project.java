@@ -17,8 +17,6 @@ public class Project {
 		
 	}
 	
-	
-	
 	public Project(String projectId, String projectName, int teamSize, String createdBy, String createdOn) {
 		super();
 		this.projectId = projectId;
