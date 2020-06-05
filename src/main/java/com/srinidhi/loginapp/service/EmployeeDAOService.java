@@ -22,10 +22,7 @@ public class EmployeeDAOService {
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
 	
 
 	public Employee addEmployee(Employee employee)  {

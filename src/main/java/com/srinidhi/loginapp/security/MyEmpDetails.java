@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.srinidhi.loginapp.model.Employee;
 import com.srinidhi.loginapp.model.User;
 
+
 public class MyEmpDetails implements UserDetails{
 	
 	private String username;

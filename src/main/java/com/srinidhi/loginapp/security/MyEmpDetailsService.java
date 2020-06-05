@@ -7,12 +7,13 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.srinidhi.loginapp.model.Employee;
 import com.srinidhi.loginapp.model.User;
 import com.srinidhi.loginapp.repo.EmployeeRepo;
 
-
+@Service
 public class MyEmpDetailsService implements UserDetailsService {
 	
 	@Autowired
