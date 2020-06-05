@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.srinidhi.loginapp.exceptions.ResourceNotFoundException;
 import com.srinidhi.loginapp.model.Employee;
-import com.srinidhi.loginapp.model.Project;
 import com.srinidhi.loginapp.repo.EmployeeRepo;
 import com.srinidhi.loginapp.service.EmployeeService;
 
