@@ -18,7 +18,6 @@ public class ProjectDAOService {
 	public ProjectRepo projRepo;
 	
 	public Project addProject(Project proj) {
-		proj.setProjectId("PROJ_"+(projRepo.count()+1));
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		String dateCustom = format.format(date);
@@ -35,4 +34,12 @@ public class ProjectDAOService {
 		projRepo.deleteById(id);
 	}
 	
+	public boolean findProjectById(String projectId) {
+		Project project = projRepo.findById(projectId).get();
+		if(project!=null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

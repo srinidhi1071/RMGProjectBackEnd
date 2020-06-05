@@ -24,15 +24,15 @@ import com.srinidhi.loginapp.repo.ProjectRepo;
 import com.srinidhi.loginapp.service.ProjectDAOService;
 
 @RestController
-@CrossOrigin(origins ="*")
+@CrossOrigin(origins = "*")
 public class ProjectController {
-	
+
 	@Autowired
 	public ProjectDAOService projDAOService;
-	
+
 	@Autowired
 	public ProjectRepo projRepo;
-	
+
 	@PostMapping("/addProject")
 	public ResponseEntity addProject(@RequestBody Project project) {
 		Project proj = projDAOService.addProject(project);
@@ -44,15 +44,21 @@ public class ProjectController {
 		ResponseEntity re = new ResponseEntity(hm, HttpStatus.CREATED);
 		return re;
 	}
-	
+
 	@GetMapping("/projects")
-	public List<Project> getAllProjects(){
+	public List<Project> getAllProjects() {
 		return projDAOService.findAllProjects();
 	}
-	
+
+	@GetMapping("/projects/{projectId}")
+	public Project getSingleProject(@PathVariable String projectId) {
+		return projRepo.findById(projectId).get();
+	}
+
 	@PutMapping("/projects/{projectId}")
-	public ResponseEntity<Project> updateProject(@PathVariable String projectId,@RequestBody Project project) {
-		Project proj = projRepo.findById(projectId).orElseThrow(()->new ResourceNotFoundException("Project Not Found For the Id::"+projectId));
+	public ResponseEntity<Project> updateProject(@PathVariable String projectId, @RequestBody Project project) {
+		Project proj = projRepo.findById(projectId)
+				.orElseThrow(() -> new ResourceNotFoundException("Project Not Found For the Id::" + projectId));
 		proj.setProjectId(projectId);
 		proj.setCreatedBy(project.getCreatedBy());
 		proj.setProjectName(project.getProjectName());
@@ -60,14 +66,18 @@ public class ProjectController {
 		Project updatedProject = projRepo.save(proj);
 		return ResponseEntity.ok(updatedProject);
 	}
-	
+
 	@DeleteMapping("/projects/{projectId}")
 	public ResponseEntity deleteProject(@PathVariable String projectId) {
-		System.out.println(projectId);
-		projDAOService.deleteProject(projectId);
-		HashMap<String, String> hm = new HashMap<>();
-		hm.put("msg", "resource deleted successfully");
-		ResponseEntity re = new ResponseEntity(hm, HttpStatus.NO_CONTENT);
-		return re;
+		if (projDAOService.findProjectById(projectId)) {
+			projDAOService.deleteProject(projectId);
+			HashMap<String, String> hm = new HashMap<>();
+			hm.put("msg", "resource deleted successfully");
+			ResponseEntity re = new ResponseEntity(hm, HttpStatus.NO_CONTENT);
+			return re;
+		} else {
+			throw new ResourceNotFoundException("Project Not Found For the Id::" + projectId);
+		}
+
 	}
 }
