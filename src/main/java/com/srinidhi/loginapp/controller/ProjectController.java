@@ -63,6 +63,7 @@ public class ProjectController {
 		proj.setCreatedBy(project.getCreatedBy());
 		proj.setProjectName(project.getProjectName());
 		proj.setTeamSize(project.getTeamSize());
+		proj.setStatus(project.getStatus());
 		Project updatedProject = projRepo.save(proj);
 		return ResponseEntity.ok(updatedProject);
 	}

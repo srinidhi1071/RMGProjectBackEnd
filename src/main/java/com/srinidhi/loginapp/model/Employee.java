@@ -44,6 +44,61 @@ public class Employee {
 	private String dob;
 	
 	private double experience;
+
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public double getExperience() {
+		return experience;
+	}
+
+	public void setExperience(double experience) {
+		this.experience = experience;
+	}
+	
+	
 	
 
 }
