@@ -1,4 +1,4 @@
-package com.srinidhi.loginapp.model;
+ package com.srinidhi.loginapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,11 +44,77 @@ public class Employee {
 	private String dob;
 	
 	private double experience;
-
+	
+	private String username;
+	
+	private String designation;
+	
+	private String password;
+	
+	private String role; 
+	
+	
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+
+	public String getDesignation() {
+		return designation;
+	}
+
+
+
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
 
 	public String getEmpId() {
 		return empId;

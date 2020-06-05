@@ -9,20 +9,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.srinidhi.loginapp.model.Employee;
 import com.srinidhi.loginapp.model.User;
 
 
-
-public class MyUserDetails implements UserDetails{
+public class MyEmpDetails implements UserDetails{
 	
 	private String username;
 	private String password;
 	private List<GrantedAuthority> authorities;
 
-	public  MyUserDetails(User user) {
-		this.username = user.getName();
-		this.password = user.getPassword();
-		this.authorities=Arrays.stream(user.getRole().split(","))
+	public  MyEmpDetails(Employee emp) {
+		this.username = emp.getUsername();
+		this.password = emp.getPassword();
+		this.authorities=Arrays.stream(emp.getRole().split(","))
 							.map(SimpleGrantedAuthority::new)
 							.collect(Collectors.toList());
 	}
@@ -68,5 +68,6 @@ public class MyUserDetails implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
+
 
 }

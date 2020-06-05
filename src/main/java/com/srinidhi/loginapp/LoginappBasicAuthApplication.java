@@ -7,12 +7,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.srinidhi.loginapp.repo.UserRepository;
+import com.srinidhi.loginapp.repo.EmployeeRepo;
+
 
 
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = UserRepository.class )
+@EnableJpaRepositories(basePackageClasses = EmployeeRepo.class )
 public class LoginappBasicAuthApplication {
 
 	public static void main(String[] args) {
