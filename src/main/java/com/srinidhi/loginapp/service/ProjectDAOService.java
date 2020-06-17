@@ -22,8 +22,8 @@ public class ProjectDAOService {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		String dateCustom = format.format(date);
 		proj.setCreatedOn(dateCustom);
-		projRepo.save(proj);
-		return  proj;
+		Project savedProject = projRepo.save(proj);
+		return  savedProject;
 	}
 	
 	public List<Project> findAllProjects() {

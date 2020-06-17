@@ -42,6 +42,7 @@ public class EmployeeDAOService {
 		emp.setUsername(employee.getUsername());
 		String pw=employee.getUsername().substring(0,4)+"@"+employee.getMobileNo().substring(6);
 		emp.setPassword(passwordEncoder.encode(pw));
+		emp.setProject(employee.getProject());
 		Employee savedEmp = employeeRepo.save(emp);
 		return savedEmp;
 	}
