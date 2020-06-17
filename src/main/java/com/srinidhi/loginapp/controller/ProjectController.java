@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.srinidhi.loginapp.exceptions.ProjectNameAlreadyPresentException;
 import com.srinidhi.loginapp.exceptions.ResourceNotFoundException;
 import com.srinidhi.loginapp.model.Project;
 import com.srinidhi.loginapp.repo.ProjectRepo;
@@ -35,11 +36,18 @@ public class ProjectController {
 
 	@PostMapping("/addProject")
 	public ResponseEntity addProject(@RequestBody Project project) {
+		
+		if(projRepo.findByProjectName(project.getProjectName()).isPresent())
+		{
+			throw new ProjectNameAlreadyPresentException("The Project Name :"+project.getProjectName()+" Already Exists");
+		}
 		Project proj = projDAOService.addProject(project);
 		HashMap<String, String> hm = new HashMap<>();
 		hm.put("projectName", proj.getProjectName());
 		hm.put("projectId", proj.getProjectId());
 		hm.put("createdOn", proj.getCreatedOn());
+		hm.put("status",proj.getStatus()); 
+		hm.put("createdBy", proj.getCreatedBy());
 		hm.put("msg", "Successfully Added");
 		ResponseEntity re = new ResponseEntity(hm, HttpStatus.CREATED);
 		return re;
