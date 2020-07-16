@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -47,8 +49,8 @@ public class EmployeeDAOService {
 		return savedEmp;
 	}
 
-	public List<Employee> findAllEmployees() {
-		return employeeRepo.findAll();
+	public Page<Employee> findAllEmployees(Pageable pageable) {
+		return employeeRepo.findAll(pageable);
 	}
 
 	public boolean findEmployeetById(String empId) {
